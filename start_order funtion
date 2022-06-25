@@ -1,0 +1,69 @@
+//this is the first function under class pharmacy
+
+
+
+    /// first function
+    void start_order()
+    {
+       ///called the print_medicines() function
+        print_medicines();
+        order_item *new_order = new order_item;
+        ///new variables
+        int number;
+        bool found = false;
+        do
+        {
+            ///take order number
+            cout<<"Enter order number: ";
+            cin>>number;
+            found = false;
+            order_item *tmp = head;
+            while(tmp != NULL)
+            {
+                if (tmp->order_number == number)
+                {
+                    found = true;
+                }
+
+                tmp = tmp->next_item;
+            }
+        } while (found==true);
+        ///give order name and date
+        new_order->order_number = number;
+        cout<<"Enter order name: ";
+        cin>>new_order->order_name;
+        cout<<"Enter Date: ";
+        cin>>new_order->order_date;
+        do
+        {
+            ///how many items are to be ordered
+            cout<<"Enter number of order items (MAX. 15 items): ";
+            cin>>new_order->number_of_items;
+        } while (new_order->number_of_items>15);
+
+        for(int i=0; i<new_order->number_of_items; i++)
+        {
+            ///choosing order details
+            cout<<"Select item: ";
+            cin>>new_order->order_items[i];
+            cout << "number of packs: ";
+            cin >> new_order->quantity[i];
+            new_order->order_amount[i] = new_order->quantity[i] * medicine_prices[new_order->order_items[i]-1];
+            cout<< "Medicine Name: " <<medicines[new_order->order_items[i]-1]<<endl;
+            cout << "The amount You need to pay is: " << new_order->order_amount[i]<<" RUB"<<endl;
+        }
+        cout<<"Order placed!! Go to order summary and proceed to pay!"<<endl;
+        new_order->next_item = NULL;
+        new_order->prev_item = NULL;
+        if(head == NULL && tail == NULL)
+        {
+            head = tail = new_order;
+        }
+        else
+        {
+            tail->next_item = new_order;
+            new_order->prev_item = tail;
+            tail = new_order;
+        }
+
+    }
