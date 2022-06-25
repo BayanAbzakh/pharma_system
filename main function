@@ -1,0 +1,53 @@
+/// this is main function to run the whole
+int main()
+{
+
+    int choice;
+    Pharmacy store;
+    do
+    {
+        print_message();
+        cin>>choice;
+        switch (choice)
+        {
+            case 1:
+            {
+                store.start_order();
+                break;
+            }
+            case 2:
+            {
+                store.delete_order();
+                break;
+            }
+            case 3:
+            {
+                store.display_orders();
+                break;
+            }
+            case 4:
+            {
+                store.retrieve_pay_order();
+                break;
+            }
+            case 5:
+            {
+                store.change_order();
+                break;
+            }
+            case 6:
+            {
+                break;
+            }
+            default:
+            {
+                cout<<"invalid input. Try Again!!"<<endl;
+                break;
+            }
+        }
+
+    } while (choice != 6);
+    cout<<"Thank You for using our system"<<endl;
+    return 0;
+
+}
