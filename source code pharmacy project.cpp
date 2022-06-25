@@ -1,3 +1,4 @@
+///libraries used
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -9,26 +10,28 @@
 #define MAX_ITEMS 15
 
 using namespace std;
-
+/// list of medicine names 15 elements
 string medicines[MAX_ITEMS]={
-    "Agiolax",
-    "Mebo (30g)",
-    "Aspirin Protect 100",
-    "Cipralex (15mg)",
-    "Tramal",
-    "Nabilet (5mg)",
-	"Unifed",
-    "Relaxon",
-    "Deflat (120mg)",
-    "Fendol (500mg)",
-    "Motitium (10mg)",
-    "Duspatalin",
-    "Lexotanil (3mg)",
-    "Zeranase",
-    "Euthyrox (100mg)"};
+        "Agiolax",
+        "Mebo (30g)",
+        "Aspirin Protect 100",
+        "Cipralex (15mg)",
+        "Tramal",
+        "Nabilet (5mg)",
+        "Unifed",
+        "Relaxon",
+        "Deflat (120mg)",
+        "Fendol (500mg)",
+        "Motitium (10mg)",
+        "Duspatalin",
+        "Lexotanil (3mg)",
+        "Zeranase",
+        "Euthyrox (100mg)"};
+
+///prices of medicine
 double medicine_prices[MAX_ITEMS] = {150.00, 146.00, 100.00, 500.00, 300.00, 200.00, 250.00, 400.00, 169.00, 199.00, 245.00, 329.00, 140.00, 59.00, 230.00};
 
-
+///structure containing all variables
 struct order_item
 {
     int order_number;
@@ -47,6 +50,7 @@ struct order_item
 order_item *head = NULL;
 order_item *tail = NULL;
 
+/// function to print medicines
 void print_medicines()
 {
     cout<<"List of available medicines"<<endl;
@@ -57,6 +61,8 @@ void print_medicines()
         cout<<i+1<<" \t\t "<<medicines[i]<<" \t\t "<<medicine_prices[i]<<" RUB"<<endl;
     }
 }
+
+///function to print the order details chosen by customer as input
 void print_order(order_item *item)
 {
     double total = 0.0;
@@ -68,29 +74,33 @@ void print_order(order_item *item)
     {
         cout<<i+1<<". "<<medicines[item->order_items[i]-1]<< " with amount of "<<item->quantity[i]<<"pack(s) with price "<<item->order_amount[i]<<" RUB"<<endl;
         total += item->order_amount[i];
-        
+
     }
     cout<<"total order amount: "<<total<<" RUB."<<endl;
     cout<<"<<------------------------------------------------------------------>>"<<endl;
 
 }
 
+///general class containing all functions
 class Pharmacy
 {
-    public:
+public:
     Pharmacy()
     {
 
     }
-    
+    /// first function
     void start_order()
     {
+       ///called the print_medicines() function
         print_medicines();
         order_item *new_order = new order_item;
+        ///new variables
         int number;
         bool found = false;
         do
         {
+            ///take order number
             cout<<"Enter order number: ";
             cin>>number;
             found = false;
@@ -101,10 +111,11 @@ class Pharmacy
                 {
                     found = true;
                 }
-                
+
                 tmp = tmp->next_item;
             }
         } while (found==true);
+        ///give order name and date
         new_order->order_number = number;
         cout<<"Enter order name: ";
         cin>>new_order->order_name;
@@ -112,12 +123,14 @@ class Pharmacy
         cin>>new_order->order_date;
         do
         {
+            ///how many items are to be ordered
             cout<<"Enter number of order items (MAX. 15 items): ";
             cin>>new_order->number_of_items;
         } while (new_order->number_of_items>15);
 
         for(int i=0; i<new_order->number_of_items; i++)
         {
+            ///choosing order details
             cout<<"Select item: ";
             cin>>new_order->order_items[i];
             cout << "number of packs: ";
@@ -139,9 +152,9 @@ class Pharmacy
             new_order->prev_item = tail;
             tail = new_order;
         }
-        
+
     }
-    
+    ///function to delete order
     int delete_order()
     {
         int num;
@@ -183,7 +196,7 @@ class Pharmacy
         cout<<"order with number  "<<num<<" was not found."<<endl;
         return 2;
     }
-
+    ///function to display all made orders
     int display_orders()
     {
         order_item *tmp = head;
@@ -198,12 +211,13 @@ class Pharmacy
             tmp = tmp->next_item;
         }
         return 1;
-        
+
 
     }
 
     void retrieve_pay_order()
     {
+        ///function to show amount of money to pay
         int num;
         double amount;
         cout<<"Enter order number you want to pay: ";
@@ -237,6 +251,7 @@ class Pharmacy
 
     void change_order()
     {
+        ///function to make edits to order
         int num, change_item, new_item;
         double amount;
         cout<<"Enter order number you want to change: ";
@@ -260,6 +275,7 @@ class Pharmacy
             }
             if(found)
             {
+                ///details or new changes
                 cout<<"Order required to modify is with the following details:-"<<endl;
                 print_order(tmp);
                 cout<<"Select item you want to change: ";
@@ -281,10 +297,11 @@ class Pharmacy
         }
 
     }
-    
+
 };
 void print_message()
 {
+    ///function to print all functionalities of system on terminal
     cout<<"Welcome to the pharmacy system"<<endl;
     cout<<"<<----------------------------------------------->>"<<endl;
     cout<<"Here Are the system options"<<endl;
@@ -298,9 +315,10 @@ void print_message()
     cout<<"Process number: ";
 }
 
+/// main function to run program
 int main()
 {
-    
+
     int choice;
     Pharmacy store;
     do
@@ -340,8 +358,8 @@ int main()
             }
             default:
             {
-                    cout<<"invalid input. Try Again!!"<<endl;
-                    break;
+                cout<<"invalid input. Try Again!!"<<endl;
+                break;
             }
         }
 
