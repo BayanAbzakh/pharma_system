@@ -9,7 +9,7 @@ that incliude:
 4- displaying a specific order with total sum of money to pay for it in rubles
 5- making edits to a specific order. 
 ******************************************************
-the main screen :
+0- the main screen :
 ![image](https://user-images.githubusercontent.com/91026121/175813282-b68cc7c8-0d9a-4876-8c95-1e68654cdce3.png)
 ****************************************
 small demonstation of placing an order:
