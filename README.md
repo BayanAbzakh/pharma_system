@@ -1,5 +1,6 @@
 # Pharmacy system
 This is a system to manage a pharmacy
+the repository has 5 branches 
 ******************************************************
 The aim of this project it to make administrating a pharmacy simple by using different functionalities to organize and run=different processes
 that incliude:
