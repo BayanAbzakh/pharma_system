@@ -1,39 +1,46 @@
-///libraries used
 #include <iostream>
-#include <stdlib.h>
 #include <string>
-#include <cctype>
-#include <cmath>
-#include <cstdio>
-#include <fstream>
-#include <iomanip>
+
 #define MAX_ITEMS 15
-
 using namespace std;
-/// list of medicine names 15 elements
-string medicines[MAX_ITEMS]={
-        "Agiolax",
-        "Mebo (30g)",
-        "Aspirin Protect 100",
-        "Cipralex (15mg)",
-        "Tramal",
-        "Nabilet (5mg)",
-        "Unifed",
-        "Relaxon",
-        "Deflat (120mg)",
-        "Fendol (500mg)",
-        "Motitium (10mg)",
-        "Duspatalin",
-        "Lexotanil (3mg)",
-        "Zeranase",
-        "Euthyrox (100mg)"};
 
-///prices of medicine
-double medicine_prices[MAX_ITEMS] = {150.00, 146.00, 100.00, 500.00, 300.00, 200.00, 250.00, 400.00, 169.00, 199.00, 245.00, 329.00, 140.00, 59.00, 230.00};
+///first class
+class inventory{
+    ///variables:
+    int price;
+    string id;
+    string name;
+    const string type = "OTC";
+public:
+    inventory() {
+        price =0;
+    }
+    void setId(string s){
+        id = s;
+    }
+    void set(int p, string n){
+        price = p;
+        name = n;
+    }
+    int getPrice()const{
+        return price;
+    }
 
-///structure containing all variables
-struct order_item
-{
+    string getId()const{
+        return id;
+    }
+
+    string getName()const{
+        return name;
+    }
+
+    string getType()const{
+        return type;
+    }
+};
+///second class:
+class order{
+    inventory inv[15];
     int order_number;
     string order_name;
     string order_date;
@@ -43,58 +50,68 @@ struct order_item
     double order_amount[MAX_ITEMS];
     int number_of_items;
     bool paid = false;
-    order_item *next_item;
-    order_item *prev_item;
-};
-
-order_item *head = NULL;
-order_item *tail = NULL;
-
-/// function to print medicines
-void print_medicines()
-{
-    cout<<"List of available medicines"<<endl;
-    cout<<"<<-------------------------------------->>"<<endl;
-    cout<<"index \t\t "<<"Medicine name \t\t Medicine price"<<endl;
-    for(int i=0; i<MAX_ITEMS; i++)
-    {
-        cout<<i+1<<" \t\t "<<medicines[i]<<" \t\t "<<medicine_prices[i]<<" RUB"<<endl;
-    }
-}
-
-///function to print the order details chosen by customer as input
-void print_order(order_item *item)
-{
-    double total = 0.0;
-    cout<<"Order Number: "<<item->order_number<<endl;
-    cout<<"Order name: "<<item->order_name<<endl;
-    cout<<"Order date: "<<item->order_date<<endl;
-    cout<<"Order Items:-"<<endl;
-    for(int i=0; i<item->number_of_items; i++)
-    {
-        cout<<i+1<<". "<<medicines[item->order_items[i]-1]<< " with amount of "<<item->quantity[i]<<"pack(s) with price "<<item->order_amount[i]<<" RUB"<<endl;
-        total += item->order_amount[i];
-
-    }
-    cout<<"total order amount: "<<total<<" RUB."<<endl;
-    cout<<"<<------------------------------------------------------------------>>"<<endl;
-
-}
-
-///general class containing all functions
-class Pharmacy
-{
+    order *next_item;
+    order *prev_item;
+    order *head = NULL;
+    order *tail = NULL;
 public:
-    Pharmacy()
-    {
+    order(){
+        ///medicine inventory:
+        total =0;
+        inv[0].set(150, "Agiolax                "), inv[1].set(146,"Mebo (30g)             ");
+        inv[2].set(100, "Aspirin Protect 100    "), inv[3].set(500,"Cipralex (15mg)        ");
+        inv[4].set(300, "Tramal                 "), inv[5].set(200, "Nabilet (5mg)          ");
+        inv[6].set(250,"Unifed                 "), inv[7].set(400,"Relaxon                ");
+        inv[8].set(169,"Deflat (120mg)         " ), inv[9].set(199, "Fendol (500mg)         ");
+        inv[10].set(245,"Motitium (10mg)        " ), inv[11].set(329, "Duspatalin             ");
+        inv[12].set(140,"Lexotanil (3mg)        " ), inv[13].set(59, "Zeranase               ");
+        inv[14].set(230,"Euthyrox (100mg)       " );
+        for(int i = 0; i<15; i++){
+            inv[i].setId(to_string(i+1));
+        }
 
     }
-    /// first function
+    ///function to take order details from user:
+    void print_order(order *item)
+    {
+        cout<<"Order Number: "<<item->order_number<<endl;
+        cout<<"Order name: "<<item->order_name<<endl;
+        cout<<"Order date: "<<item->order_date<<endl;
+        cout<<"Order Items:-"<<endl;
+        for(int i=0; i<item->number_of_items; i++)
+        {
+            cout<<i+1<<". "<<inv[item->order_items[i]-1].getName()<< " with amount of "<<item->quantity[i]<<"pack(s) with price "<<item->order_amount[i]<<" RUB"<<endl;
+            total += item->order_amount[i];
+
+        }
+        cout<<"total order amount: "<<total<<" RUB."<<endl;
+        cout<<"<<------------------------------------------------------------------>>"<<endl;
+
+    }
+    void printMenu()const{
+        ///function to print names of medicines:
+        cout<<"List of available medicines!!!"<<endl;
+        cout<<"###############################################################################\n\n";
+        cout<<"###############################################################################\n";
+        cout<<"Id   \t\tDrug Type\tMedicine Name \t        Medicine Price"<<endl;
+        cout<<"###############################################################################\n";
+        for(int i=0; i<15; i++)
+        {
+            cout<<inv[i].getId()<<" \t\t "<<inv[i].getType()<<" \t\t "<<inv[i].getName()<<"\t\t"<<inv[i].getPrice()<<" RUB"<<endl;
+        }
+    }
+    ///function to take new order
+    void newOrder(){
+        int number;
+
+        cout<<"Enter order number: ";
+        cin >> number;
+    }
     void start_order()
     {
-       ///called the print_medicines() function
-        print_medicines();
-        order_item *new_order = new order_item;
+        ///called the printMenu() function
+        printMenu();
+        order *new_order = new order;
         ///new variables
         int number;
         bool found = false;
@@ -104,7 +121,7 @@ public:
             cout<<"Enter order number: ";
             cin>>number;
             found = false;
-            order_item *tmp = head;
+            order *tmp = head;
             while(tmp != NULL)
             {
                 if (tmp->order_number == number)
@@ -114,7 +131,7 @@ public:
 
                 tmp = tmp->next_item;
             }
-        } while (found==true);
+        } while (found);
         ///give order name and date
         new_order->order_number = number;
         cout<<"Enter order name: ";
@@ -135,8 +152,8 @@ public:
             cin>>new_order->order_items[i];
             cout << "number of packs: ";
             cin >> new_order->quantity[i];
-            new_order->order_amount[i] = new_order->quantity[i] * medicine_prices[new_order->order_items[i]-1];
-            cout<< "Medicine Name: " <<medicines[new_order->order_items[i]-1]<<endl;
+            new_order->order_amount[i] = new_order->quantity[i] * inv[new_order->order_items[i]-1].getPrice();
+            cout<< "Medicine Name: " <<inv[new_order->order_items[i]-1].getName()<<endl;
             cout << "The amount You need to pay is: " << new_order->order_amount[i]<<" RUB"<<endl;
         }
         cout<<"Order placed!! Go to order summary and proceed to pay!"<<endl;
@@ -154,7 +171,7 @@ public:
         }
 
     }
-    ///function to delete order
+    ///function to delete a specific order
     int delete_order()
     {
         int num;
@@ -167,7 +184,7 @@ public:
         }
         else
         {
-            order_item *tmp = head;
+            order *tmp = head;
             while(tmp != NULL)
             {
                 if(tmp->order_number == num)
@@ -185,7 +202,7 @@ public:
                         tmp->next_item->prev_item = tmp->prev_item;
                         tmp->prev_item->next_item = tmp->next_item;
                     }
-                    cout<<"The following order has been deleted"<<endl;
+                    cout<<"Order placed!! Go to order summary and proceed to pay!"<<endl;
                     print_order(tmp);
                     delete tmp;
                     return 0;
@@ -196,10 +213,10 @@ public:
         cout<<"order with number  "<<num<<" was not found."<<endl;
         return 2;
     }
-    ///function to display all made orders
+    ///function to display available orders:
     int display_orders()
     {
-        order_item *tmp = head;
+        order *tmp = head;
         if(tmp == NULL)
         {
             cout<<"No orders to display. please place an order"<<endl;
@@ -214,10 +231,9 @@ public:
 
 
     }
-
+    ///function to show order about to be paid for
     void retrieve_pay_order()
     {
-        ///function to show amount of money to pay
         int num;
         double amount;
         cout<<"Enter order number you want to pay: ";
@@ -229,7 +245,7 @@ public:
         }
         else
         {
-            order_item *tmp = head;
+            order *tmp = head;
             while(tmp != NULL)
             {
                 if(tmp->order_number == num)
@@ -248,10 +264,9 @@ public:
             cout<<"order with number  "<<num<<" was not found."<<endl;
         }
     }
-
+    ///function to edit order details
     void change_order()
     {
-        ///function to make edits to order
         int num, change_item, new_item;
         double amount;
         cout<<"Enter order number you want to change: ";
@@ -263,7 +278,7 @@ public:
         }
         else
         {
-            order_item *tmp = head;
+            order *tmp = head;
             while(tmp != NULL)
             {
                 if(tmp->order_number == num)
@@ -281,13 +296,13 @@ public:
                 cout<<"Select item you want to change: ";
                 cin>>change_item;
                 cout<<"Select new item from the following list: ";
-                print_medicines();
+                printMenu();
                 cout<<"Select item: ";
                 cin>>tmp->order_items[change_item-1];
                 cout << "number of packs: ";
                 cin >> tmp->quantity[change_item-1];
-                tmp->order_amount[change_item-1] = tmp->quantity[change_item-1] * medicine_prices[tmp->order_items[change_item-1]-1];
-                cout<< "Medicine Name: " <<medicines[tmp->order_items[change_item-1]-1]<<endl;
+                tmp->order_amount[change_item-1] = tmp->quantity[change_item-1] * inv[tmp->order_items[change_item-1]-1].getPrice();
+                cout<< "Medicine Name: " <<inv[tmp->order_items[change_item-1]-1].getName()<<endl;
                 cout << "The amount You need to pay is: " << tmp->order_amount[change_item-1]<<" RUB"<<endl;
             }
             else
@@ -298,73 +313,70 @@ public:
 
     }
 
+
+
 };
-void print_message()
-{
+///third class
+class print{
+public:
     ///function to print all functionalities of system on terminal
-    cout<<"Welcome to the pharmacy system"<<endl;
-    cout<<"<<----------------------------------------------->>"<<endl;
-    cout<<"Here Are the system options"<<endl;
-    cout<<"1. Place a new order"<<endl;
-    cout<<"2. Delete avaialable order"<<endl;
-    cout<<"3. List available orders"<<endl;
-    cout<<"4. Display and pay for order"<<endl;
-    cout<<"5. Change an order"<<endl;
-    cout<<"6. Quit"<<endl;
-    cout<<"<<----------------------------------------------->>"<<endl;
-    cout<<"Process number: ";
-}
-
-/// main function to run program
-int main()
-{
-
-    int choice;
-    Pharmacy store;
-    do
+    void print_message()
     {
-        print_message();
-        cin>>choice;
-        switch (choice)
-        {
-            case 1:
-            {
+        cout<<"Welcome to the pharmacy system"<<endl;
+        cout<<"<<----------------------------------------------->>"<<endl;
+        cout<<"Here Are the system options"<<endl;
+        cout<<"1. Place a new order"<<endl;
+        cout<<"2. Delete available order"<<endl;
+        cout<<"3. List available orders"<<endl;
+        cout<<"4. Display and pay for order"<<endl;
+        cout<<"5. Change an order"<<endl;
+        cout<<"6. Quit"<<endl;
+        cout<<"<<----------------------------------------------->>"<<endl;
+        cout<<"Process number: ";
+    }
+};
+///main function
+int main(){
+    int choice;
+    print p;
+    order store;
+    do {
+        p.print_message();
+        cin >> choice;
+        switch (choice) {
+            case 1: {
                 store.start_order();
                 break;
             }
-            case 2:
-            {
+            case 2: {
                 store.delete_order();
                 break;
             }
-            case 3:
-            {
+            case 3: {
                 store.display_orders();
                 break;
             }
-            case 4:
-            {
+            case 4: {
                 store.retrieve_pay_order();
                 break;
             }
-            case 5:
-            {
+            case 5: {
                 store.change_order();
                 break;
             }
-            case 6:
-            {
+            case 6: {
                 break;
             }
-            default:
-            {
-                cout<<"invalid input. Try Again!!"<<endl;
+            default: {
+                cout << "invalid input. Try Again!!" << endl;
                 break;
             }
         }
 
     } while (choice != 6);
-    cout<<"Thank You for using our system"<<endl;
+    cout << "Thank You for using our system" << endl;
     return 0;
 
 }
+
+
