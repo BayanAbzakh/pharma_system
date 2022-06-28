@@ -1,4 +1,4 @@
-    ///function to show order about to be paid for
+    //function to show order about to be paid for
     void retrieve_pay_order()
     {
         int num;
