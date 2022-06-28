@@ -1,4 +1,4 @@
-    ///function to take order details from user:
+    //function to take order details from user:
     void print_order(order *item)
     {
         cout<<"Order Number: "<<item->order_number<<endl;
