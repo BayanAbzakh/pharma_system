@@ -1,4 +1,4 @@
-    ///function to display available orders:
+    //function to display available orders:
     int display_orders()
     {
         order *tmp = head;
