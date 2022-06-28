@@ -1,14 +1,14 @@
     void start_order()
     {
-        ///called the printMenu() function
+        //called the printMenu() function
         printMenu();
         order *new_order = new order;
-        ///new variables
+        //new variables
         int number;
         bool found = false;
         do
         {
-            ///take order number
+            //take order number
             cout<<"Enter order number: ";
             cin>>number;
             found = false;
@@ -23,7 +23,7 @@
                 tmp = tmp->next_item;
             }
         } while (found);
-        ///give order name and date
+        //give order name and date
         new_order->order_number = number;
         cout<<"Enter order name: ";
         cin>>new_order->order_name;
@@ -31,14 +31,14 @@
         cin>>new_order->order_date;
         do
         {
-            ///how many items are to be ordered
+            //how many items are to be ordered
             cout<<"Enter number of order items (MAX. 15 items): ";
             cin>>new_order->number_of_items;
         } while (new_order->number_of_items>15);
 
         for(int i=0; i<new_order->number_of_items; i++)
         {
-            ///choosing order details
+            //choosing order details
             cout<<"Select item: ";
             cin>>new_order->order_items[i];
             cout << "number of packs: ";
