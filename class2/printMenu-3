@@ -1,0 +1,12 @@
+    void printMenu()const{
+        ///function to print names of medicines:
+        cout<<"List of available medicines!!!"<<endl;
+        cout<<"###############################################################################\n\n";
+        cout<<"###############################################################################\n";
+        cout<<"Id   \t\tDrug Type\tMedicine Name \t        Medicine Price"<<endl;
+        cout<<"###############################################################################\n";
+        for(int i=0; i<15; i++)
+        {
+            cout<<inv[i].getId()<<" \t\t "<<inv[i].getType()<<" \t\t "<<inv[i].getName()<<"\t\t"<<inv[i].getPrice()<<" RUB"<<endl;
+        }
+    }
