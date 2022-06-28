@@ -1,4 +1,4 @@
-    ///function to edit order details
+    //function to edit order details
     void change_order()
     {
         int num, change_item, new_item;
@@ -24,7 +24,7 @@
             }
             if(found)
             {
-                ///details or new changes
+                //details or new changes
                 cout<<"Order required to modify is with the following details:-"<<endl;
                 print_order(tmp);
                 cout<<"Select item you want to change: ";
