@@ -1,4 +1,4 @@
-    ///function to take new order
+    //function to take new order
     void newOrder(){
         int number;
 
