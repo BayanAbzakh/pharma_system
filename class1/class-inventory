@@ -1,6 +1,6 @@
-///first class
+//first class
 class inventory{
-    ///variables:
+    //variables:
     int price;
     string id;
     string name;
