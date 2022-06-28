@@ -4,9 +4,9 @@
 #define MAX_ITEMS 15
 using namespace std;
 
-///first class
+//first class
 class inventory{
-    ///variables:
+    //variables:
     int price;
     string id;
     string name;
@@ -38,7 +38,7 @@ public:
         return type;
     }
 };
-///second class:
+//second class:
 class order{
     inventory inv[15];
     int order_number;
@@ -56,7 +56,7 @@ class order{
     order *tail = NULL;
 public:
     order(){
-        ///medicine inventory:
+        //medicine inventory:
         total =0;
         inv[0].set(150, "Agiolax                "), inv[1].set(146,"Mebo (30g)             ");
         inv[2].set(100, "Aspirin Protect 100    "), inv[3].set(500,"Cipralex (15mg)        ");
@@ -71,7 +71,7 @@ public:
         }
 
     }
-    ///function to take order details from user:
+    //function to take order details from user:
     void print_order(order *item)
     {
         cout<<"Order Number: "<<item->order_number<<endl;
@@ -89,7 +89,7 @@ public:
 
     }
     void printMenu()const{
-        ///function to print names of medicines:
+        //function to print names of medicines:
         cout<<"List of available medicines!!!"<<endl;
         cout<<"###############################################################################\n\n";
         cout<<"###############################################################################\n";
@@ -100,7 +100,7 @@ public:
             cout<<inv[i].getId()<<" \t\t "<<inv[i].getType()<<" \t\t "<<inv[i].getName()<<"\t\t"<<inv[i].getPrice()<<" RUB"<<endl;
         }
     }
-    ///function to take new order
+    //function to take new order
     void newOrder(){
         int number;
 
@@ -109,7 +109,7 @@ public:
     }
     void start_order()
     {
-        ///called the printMenu() function
+        //called the printMenu() function
         printMenu();
         order *new_order = new order;
         ///new variables
@@ -132,7 +132,7 @@ public:
                 tmp = tmp->next_item;
             }
         } while (found);
-        ///give order name and date
+        //give order name and date
         new_order->order_number = number;
         cout<<"Enter order name: ";
         cin>>new_order->order_name;
@@ -140,14 +140,14 @@ public:
         cin>>new_order->order_date;
         do
         {
-            ///how many items are to be ordered
+            //how many items are to be ordered
             cout<<"Enter number of order items (MAX. 15 items): ";
             cin>>new_order->number_of_items;
         } while (new_order->number_of_items>15);
 
         for(int i=0; i<new_order->number_of_items; i++)
         {
-            ///choosing order details
+            //choosing order details
             cout<<"Select item: ";
             cin>>new_order->order_items[i];
             cout << "number of packs: ";
@@ -171,7 +171,7 @@ public:
         }
 
     }
-    ///function to delete a specific order
+    //function to delete a specific order
     int delete_order()
     {
         int num;
@@ -213,7 +213,7 @@ public:
         cout<<"order with number  "<<num<<" was not found."<<endl;
         return 2;
     }
-    ///function to display available orders:
+    //function to display available orders:
     int display_orders()
     {
         order *tmp = head;
@@ -231,7 +231,7 @@ public:
 
 
     }
-    ///function to show order about to be paid for
+    //function to show order about to be paid for
     void retrieve_pay_order()
     {
         int num;
@@ -264,7 +264,7 @@ public:
             cout<<"order with number  "<<num<<" was not found."<<endl;
         }
     }
-    ///function to edit order details
+    //function to edit order details
     void change_order()
     {
         int num, change_item, new_item;
@@ -316,7 +316,7 @@ public:
 
 
 };
-///third class
+//third class
 class print{
 public:
     ///function to print all functionalities of system on terminal
@@ -335,7 +335,7 @@ public:
         cout<<"Process number: ";
     }
 };
-///main function
+//main function
 int main(){
     int choice;
     print p;
