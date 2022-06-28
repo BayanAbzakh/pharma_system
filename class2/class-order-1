@@ -1,4 +1,4 @@
-///second class:
+//second class:
 class order{
     inventory inv[15];
     int order_number;
@@ -16,7 +16,7 @@ class order{
     order *tail = NULL;
 public:
     order(){
-        ///medicine inventory:
+        //medicine inventory:
         total =0;
         inv[0].set(150, "Agiolax                "), inv[1].set(146,"Mebo (30g)             ");
         inv[2].set(100, "Aspirin Protect 100    "), inv[3].set(500,"Cipralex (15mg)        ");
