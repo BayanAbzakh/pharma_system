@@ -26,3 +26,9 @@ CHECK(inventory().getId() == "5");
 CHECK(inventory().getName()== "Nabilet (5mg)" );
 CHECK(inventory().getType() == "OTC");
 }
+
+TEST_CASE("checking the functions of class order") {
+    order ord;
+    CHECK(ord.delete_order() == 1);
+    CHECK(ord.display_orders() == 6);
+}
