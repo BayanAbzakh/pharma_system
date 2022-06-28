@@ -112,12 +112,12 @@ public:
         //called the printMenu() function
         printMenu();
         order *new_order = new order;
-        ///new variables
+        //new variables
         int number;
         bool found = false;
         do
         {
-            ///take order number
+            //take order number
             cout<<"Enter order number: ";
             cin>>number;
             found = false;
@@ -290,7 +290,7 @@ public:
             }
             if(found)
             {
-                ///details or new changes
+                //details or new changes
                 cout<<"Order required to modify is with the following details:-"<<endl;
                 print_order(tmp);
                 cout<<"Select item you want to change: ";
@@ -319,7 +319,7 @@ public:
 //third class
 class print{
 public:
-    ///function to print all functionalities of system on terminal
+    //function to print all functionalities of system on terminal
     void print_message()
     {
         cout<<"Welcome to the pharmacy system"<<endl;
