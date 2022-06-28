@@ -17,3 +17,12 @@ TEST_CASE("checking the functions of class order") {
     CHECK(ord.delete_order() == 2);
     CHECK(ord.display_orders() == 1);
 }
+
+TEST_CASE("checking the main functions of class inventory") {
+
+inventory give_me_a_name;
+CHECK(inventory().getPrice() == 200);
+CHECK(inventory().getId() == "5");
+CHECK(inventory().getName()== "Nabilet (5mg)" );
+CHECK(inventory().getType() == "OTC");
+}
