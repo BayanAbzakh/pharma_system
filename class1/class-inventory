@@ -1,0 +1,34 @@
+///first class
+class inventory{
+    ///variables:
+    int price;
+    string id;
+    string name;
+    const string type = "OTC";
+public:
+    inventory() {
+        price =0;
+    }
+    void setId(string s){
+        id = s;
+    }
+    void set(int p, string n){
+        price = p;
+        name = n;
+    }
+    int getPrice()const{
+        return price;
+    }
+
+    string getId()const{
+        return id;
+    }
+
+    string getName()const{
+        return name;
+    }
+
+    string getType()const{
+        return type;
+    }
+};
