@@ -1,4 +1,4 @@
-    ///function to delete a specific order
+    //function to delete a specific order
     int delete_order()
     {
         int num;
