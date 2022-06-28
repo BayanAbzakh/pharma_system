@@ -1,0 +1,52 @@
+    ///function to edit order details
+    void change_order()
+    {
+        int num, change_item, new_item;
+        double amount;
+        cout<<"Enter order number you want to change: ";
+        cin>>num;
+        bool found = false;
+        if(head==NULL && tail==NULL)
+        {
+            cout<<"There are no orders in the system\n";
+        }
+        else
+        {
+            order *tmp = head;
+            while(tmp != NULL)
+            {
+                if(tmp->order_number == num)
+                {
+                    found = true;
+                    break;
+                }
+                tmp = tmp->next_item;
+            }
+            if(found)
+            {
+                ///details or new changes
+                cout<<"Order required to modify is with the following details:-"<<endl;
+                print_order(tmp);
+                cout<<"Select item you want to change: ";
+                cin>>change_item;
+                cout<<"Select new item from the following list: ";
+                printMenu();
+                cout<<"Select item: ";
+                cin>>tmp->order_items[change_item-1];
+                cout << "number of packs: ";
+                cin >> tmp->quantity[change_item-1];
+                tmp->order_amount[change_item-1] = tmp->quantity[change_item-1] * inv[tmp->order_items[change_item-1]-1].getPrice();
+                cout<< "Medicine Name: " <<inv[tmp->order_items[change_item-1]-1].getName()<<endl;
+                cout << "The amount You need to pay is: " << tmp->order_amount[change_item-1]<<" RUB"<<endl;
+            }
+            else
+            {
+                cout<<"No order with number "<<num<<" found in the system"<<endl;
+            }
+        }
+
+    }
+
+
+
+};
