@@ -1,0 +1,33 @@
+///second class:
+class order{
+    inventory inv[15];
+    int order_number;
+    string order_name;
+    string order_date;
+    int quantity[MAX_ITEMS];
+    double total;
+    int order_items[MAX_ITEMS];
+    double order_amount[MAX_ITEMS];
+    int number_of_items;
+    bool paid = false;
+    order *next_item;
+    order *prev_item;
+    order *head = NULL;
+    order *tail = NULL;
+public:
+    order(){
+        ///medicine inventory:
+        total =0;
+        inv[0].set(150, "Agiolax                "), inv[1].set(146,"Mebo (30g)             ");
+        inv[2].set(100, "Aspirin Protect 100    "), inv[3].set(500,"Cipralex (15mg)        ");
+        inv[4].set(300, "Tramal                 "), inv[5].set(200, "Nabilet (5mg)          ");
+        inv[6].set(250,"Unifed                 "), inv[7].set(400,"Relaxon                ");
+        inv[8].set(169,"Deflat (120mg)         " ), inv[9].set(199, "Fendol (500mg)         ");
+        inv[10].set(245,"Motitium (10mg)        " ), inv[11].set(329, "Duspatalin             ");
+        inv[12].set(140,"Lexotanil (3mg)        " ), inv[13].set(59, "Zeranase               ");
+        inv[14].set(230,"Euthyrox (100mg)       " );
+        for(int i = 0; i<15; i++){
+            inv[i].setId(to_string(i+1));
+        }
+
+    }   
