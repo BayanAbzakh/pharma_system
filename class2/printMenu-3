@@ -1,5 +1,5 @@
     void printMenu()const{
-        ///function to print names of medicines:
+        //function to print names of medicines:
         cout<<"List of available medicines!!!"<<endl;
         cout<<"###############################################################################\n\n";
         cout<<"###############################################################################\n";
