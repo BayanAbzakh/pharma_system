@@ -1,0 +1,7 @@
+    ///function to take new order
+    void newOrder(){
+        int number;
+
+        cout<<"Enter order number: ";
+        cin >> number;
+    }
