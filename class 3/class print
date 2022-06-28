@@ -1,7 +1,7 @@
-///third class
+//third class
 class print{
 public:
-    ///function to print all functionalities of system on terminal
+    //function to print all functionalities of system on terminal
     void print_message()
     {
         cout<<"Welcome to the pharmacy system"<<endl;
