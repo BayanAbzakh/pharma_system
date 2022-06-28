@@ -1,0 +1,18 @@
+    ///function to display available orders:
+    int display_orders()
+    {
+        order *tmp = head;
+        if(tmp == NULL)
+        {
+            cout<<"No orders to display. please place an order"<<endl;
+            return 0;
+        }
+        while(tmp != NULL)
+        {
+            print_order(tmp);
+            tmp = tmp->next_item;
+        }
+        return 1;
+
+
+    }
